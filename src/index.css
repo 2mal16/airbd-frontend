@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+   Wyss Center brand tokens.
+
+   Taken from wysscenter.ch's own CSS custom properties
+   (--wp--preset--color--*) and converted to oklch. Keep the hex in the comment
+   so the two can be compared at a glance.
+   --------------------------------------------------------------------------- */
+@theme {
+    --color-wyss-green: oklch(0.8153 0.1779 161.77); /* #0ee59e primary-green */
+    --color-wyss-green-medium: oklch(0.8684 0.1567 167.05); /* #4df4be */
+    --color-wyss-green-dark: oklch(0.65 0.1413 161.96); /* #08a974 */
+    --color-wyss-green-darker: oklch(0.5253 0.1122 162.73); /* #077e57 */
+    --color-wyss-green-light: oklch(0.914 0.1063 170.88); /* #95fad9 */
+    --color-wyss-green-lighter: oklch(0.9846 0.017 174.08); /* #effef9 */
+    --color-wyss-slate: oklch(0.3392 0.0339 252.15); /* #2b3949 greydark */
+    --color-wyss-blue: oklch(0.6383 0.1796 255.04); /* #308bf5 blue-medium */
+}
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.5);
+    --radius-md: calc(var(--radius) * 0.75);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.33);
+    --radius-2xl: calc(var(--radius) * 2);
+    --radius-3xl: calc(var(--radius) * 2.66);
+    --radius-4xl: calc(var(--radius) * 3.33);
+}
+
+:root {
+    /* 12px, the radius wysscenter.ch uses most. */
+    --radius: 0.75rem;
+
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0); /* near-black body text, as on the site */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+
+    /* The brand mint is light, so it carries dark text rather than white. */
+    --primary: oklch(0.8153 0.1779 161.77);
+    --primary-foreground: oklch(0.2 0.03 200);
+
+    --secondary: oklch(0.9791 0 89.88); /* #f8f8f8 greylighter */
+    --secondary-foreground: oklch(0.3392 0.0339 252.15);
+    --muted: oklch(0.9791 0 89.88);
+    --muted-foreground: oklch(0.48 0.015 250);
+    --accent: oklch(0.9846 0.017 174.08); /* #effef9 green-lighter */
+    --accent-foreground: oklch(0.5253 0.1122 162.73);
+    --destructive: oklch(0.56 0.1973 26.4); /* #cf2e2e vivid-red */
+
+    --border: oklch(0.9249 0 89.88); /* #e6e6e6 grey-light */
+    --input: oklch(0.8822 0 89.88); /* #d8d8d8 grey */
+    --ring: oklch(0.65 0.1413 161.96); /* green-dark: legible focus on white */
+
+    --chart-1: oklch(0.65 0.1413 161.96);
+    --chart-2: oklch(0.8153 0.1779 161.77);
+    --chart-3: oklch(0.6383 0.1796 255.04);
+    --chart-4: oklch(0.3392 0.0339 252.15);
+    --chart-5: oklch(0.914 0.1063 170.88);
+
+    --sidebar: oklch(0.9791 0 89.88);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.5253 0.1122 162.73);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.9846 0.017 174.08);
+    --sidebar-accent-foreground: oklch(0.5253 0.1122 162.73);
+    --sidebar-border: oklch(0.9249 0 89.88);
+    --sidebar-ring: oklch(0.65 0.1413 161.96);
+}
+
+.dark {
+    /* Built on #2b3949, the site's dark surface, rather than neutral grey. */
+    --background: oklch(0.21 0.025 252);
+    --foreground: oklch(0.97 0.005 250);
+    --card: oklch(0.2712 0.0299 252.15);
+    --card-foreground: oklch(0.97 0.005 250);
+    --popover: oklch(0.2712 0.0299 252.15);
+    --popover-foreground: oklch(0.97 0.005 250);
+
+    --primary: oklch(0.8153 0.1779 161.77);
+    --primary-foreground: oklch(0.2 0.03 200);
+
+    --secondary: oklch(0.3392 0.0339 252.15);
+    --secondary-foreground: oklch(0.97 0.005 250);
+    --muted: oklch(0.3392 0.0339 252.15);
+    --muted-foreground: oklch(0.72 0.02 250);
+    --accent: oklch(0.38 0.045 200);
+    --accent-foreground: oklch(0.914 0.1063 170.88);
+    --destructive: oklch(0.704 0.191 22.216);
+
+    --border: oklch(1 0 0 / 12%);
+    --input: oklch(1 0 0 / 18%);
+    --ring: oklch(0.8153 0.1779 161.77);
+
+    --chart-1: oklch(0.8153 0.1779 161.77);
+    --chart-2: oklch(0.914 0.1063 170.88);
+    --chart-3: oklch(0.6383 0.1796 255.04);
+    --chart-4: oklch(0.65 0.1413 161.96);
+    --chart-5: oklch(0.72 0.02 250);
+
+    --sidebar: oklch(0.2712 0.0299 252.15);
+    --sidebar-foreground: oklch(0.97 0.005 250);
+    --sidebar-primary: oklch(0.8153 0.1779 161.77);
+    --sidebar-primary-foreground: oklch(0.2 0.03 200);
+    --sidebar-accent: oklch(0.3392 0.0339 252.15);
+    --sidebar-accent-foreground: oklch(0.914 0.1063 170.88);
+    --sidebar-border: oklch(1 0 0 / 12%);
+    --sidebar-ring: oklch(0.8153 0.1779 161.77);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-synthesis-weight: none;
+        text-rendering: optimizeLegibility;
+    }
+
+    html {
+        @apply font-sans antialiased;
+    }
+
+    /* Headings on wysscenter.ch are light-weight and tightly tracked, never
+       uppercase — the uppercase treatment is reserved for small labels. */
+    h1,
+    h2,
+    h3 {
+        @apply font-light tracking-[-0.02em];
+    }
+}
+
+@utility eyebrow {
+    @apply text-[0.6875rem] font-medium tracking-[0.14em] text-muted-foreground uppercase;
+}
+
+@utility focus-ring {
+    @apply outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;
+}
