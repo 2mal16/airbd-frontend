@@ -16,8 +16,18 @@ import type {
   ValidationReport,
 } from '@/lib/types'
 
+/** Used whenever `VITE_API_BASE_URL` is unset, empty or blank. */
+export const DEFAULT_API_BASE_URL = 'https://backend-19c991af.fastapicloud.dev'
+
+/**
+ * Note `||`, not `??`: a hosting provider can define the variable with an
+ * empty value, and `??` would let that through. An empty base would make every
+ * request relative, which a SPA rewrite answers with `index.html` — so the
+ * failure would surface as "Unexpected token '<'" rather than as a
+ * misconfiguration.
+ */
 export const API_BASE_URL = (
-  import.meta.env.VITE_API_BASE_URL ?? 'https://backend-19c991af.fastapicloud.dev'
+  import.meta.env.VITE_API_BASE_URL?.trim() || DEFAULT_API_BASE_URL
 ).replace(/\/$/, '')
 
 export class ApiError extends Error {
@@ -64,6 +74,19 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (!response.ok) {
     throw new ApiError(response.status, await readError(response))
   }
+
+  // A 200 that is not JSON means we are not talking to the API at all — most
+  // likely a relative URL that the host's SPA rewrite answered with the app's
+  // own index.html. Say that, rather than letting JSON.parse complain.
+  const contentType = response.headers.get('content-type') ?? ''
+  if (!contentType.includes('json')) {
+    throw new ApiError(
+      response.status,
+      `Expected JSON from ${API_BASE_URL}${path} but received "${contentType || 'no content type'}". ` +
+        'Check that VITE_API_BASE_URL points at the API.',
+    )
+  }
+
   return (await response.json()) as T
 }
 
