@@ -3,7 +3,9 @@ import { ExternalLink } from 'lucide-react'
 
 import { Card, CardContent } from '@/components/ui/card'
 import { API_BASE_URL, api } from '@/lib/api'
-import { formatCount } from '@/lib/format'
+import { SNAPSHOT_TAKEN_AT } from '@/lib/catalog'
+import { formatCount, formatDate } from '@/lib/format'
+import { useOfflineStatus } from '@/lib/offline-status'
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
@@ -15,7 +17,8 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 export function AboutPage() {
-  const info = useQuery({ queryKey: ['info'], queryFn: api.info })
+  const info = useQuery({ queryKey: ['info'], queryFn: api.info, retry: false })
+  const status = useOfflineStatus()
 
   return (
     <div className="mx-auto w-full max-w-[820px] px-4 py-10 sm:px-6">
@@ -61,6 +64,10 @@ export function AboutPage() {
             <Row
               label="Datasets catalogued"
               value={info.data ? formatCount(info.data.datasets) : '…'}
+            />
+            <Row
+              label="Data source"
+              value={status.offline ? `snapshot of ${formatDate(SNAPSHOT_TAKEN_AT)}` : 'live API'}
             />
           </dl>
         </CardContent>

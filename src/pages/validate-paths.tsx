@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { Check, X } from 'lucide-react'
 import { useState } from 'react'
 
+import { ApiErrorState } from '@/components/app/api-error-state'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -68,7 +69,7 @@ export function ValidatePathsPage() {
         <div className="space-y-3">
           <Label>Result</Label>
           {check.isError && (
-            <p className="text-sm text-destructive">{(check.error as Error).message}</p>
+            <ApiErrorState error={check.error} onRetry={() => check.mutate(paths)} />
           )}
           {!check.data && !check.isError && (
             <p className="text-sm text-muted-foreground">

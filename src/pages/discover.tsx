@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { AlertCircle, Search, SlidersHorizontal } from 'lucide-react'
+import { Search, SlidersHorizontal } from 'lucide-react'
 import { useState } from 'react'
 
+import { ApiErrorState } from '@/components/app/api-error-state'
 import { DatasetCard } from '@/components/app/dataset-card'
 import { FilterSidebar } from '@/components/app/filter-sidebar'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -16,8 +16,8 @@ import {
 } from '@/components/ui/select'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
-import { PAGE_SIZE, toApiQuery, useDiscoveryState } from '@/hooks/use-dataset-query'
-import { api } from '@/lib/api'
+import { PAGE_SIZE, useDiscoveryState } from '@/hooks/use-dataset-query'
+import { getFacets, listDatasets } from '@/lib/catalog'
 import { formatCount } from '@/lib/format'
 import type { SortOrder } from '@/lib/types'
 
@@ -44,18 +44,16 @@ export function DiscoverPage() {
     setSearchDraft(state.search)
   }
 
-  const apiQuery = toApiQuery(state)
-
   const datasets = useQuery({
-    queryKey: ['datasets', apiQuery],
-    queryFn: () => api.listDatasets(apiQuery),
+    queryKey: ['datasets', state],
+    queryFn: () => listDatasets(state),
     placeholderData: (previous) => previous,
   })
 
-  // The sidebar counts reflect the current selection, minus pagination.
+  // The sidebar counts reflect the whole catalogue, not the current page.
   const facets = useQuery({
-    queryKey: ['facets'],
-    queryFn: () => api.facets(),
+    queryKey: ['facets', state],
+    queryFn: () => getFacets(state),
   })
 
   const total = datasets.data?.total_count ?? 0
@@ -166,11 +164,7 @@ export function DiscoverPage() {
           </div>
 
           {datasets.isError && (
-            <Alert variant="destructive">
-              <AlertCircle />
-              <AlertTitle>Could not reach the API</AlertTitle>
-              <AlertDescription>{(datasets.error as Error).message}</AlertDescription>
-            </Alert>
+            <ApiErrorState error={datasets.error} onRetry={() => datasets.refetch()} />
           )}
 
           {datasets.isLoading && (

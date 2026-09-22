@@ -2,6 +2,7 @@ import { ExternalLink } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router'
 
 import { BrandLockup } from '@/components/app/brand'
+import { OfflineBanner } from '@/components/app/offline-banner'
 import { ThemeToggle } from '@/components/app/theme-toggle'
 import { API_BASE_URL } from '@/lib/api'
 import { cn } from '@/lib/utils'
@@ -42,6 +43,8 @@ export function Layout() {
           </div>
         </div>
       </header>
+
+      <OfflineBanner />
 
       <main className="flex-1">
         <Outlet />

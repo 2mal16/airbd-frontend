@@ -30,3 +30,6 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Scratch output of scripts/check-fallback.mjs
+.fallback-check

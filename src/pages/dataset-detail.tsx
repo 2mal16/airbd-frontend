@@ -2,14 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import { AlertCircle, AlertTriangle, ArrowLeft, CheckCircle2, ExternalLink } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { ApiErrorState } from '@/components/app/api-error-state'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { api } from '@/lib/api'
+import { getDataset, getValidationReport } from '@/lib/catalog'
 import {
   DATATYPE_LABELS,
   LICENSE_LABELS,
@@ -69,7 +69,7 @@ function IssueRow({ issue }: { issue: Issue }) {
 function ValidationPanel({ datasetId }: { datasetId: string }) {
   const report = useQuery({
     queryKey: ['validation', datasetId],
-    queryFn: () => api.validationReport(datasetId),
+    queryFn: () => getValidationReport(datasetId),
     retry: false,
   })
 
@@ -219,7 +219,7 @@ export function DatasetDetailPage() {
 
   const dataset = useQuery({
     queryKey: ['dataset', datasetId],
-    queryFn: () => api.dataset(datasetId),
+    queryFn: () => getDataset(datasetId),
     retry: false,
   })
 
@@ -236,13 +236,7 @@ export function DatasetDetailPage() {
   if (dataset.isError || !dataset.data) {
     return (
       <div className="mx-auto w-full max-w-[1100px] px-4 py-12 sm:px-6">
-        <Alert variant="destructive">
-          <AlertCircle />
-          <AlertTitle>Dataset not found</AlertTitle>
-          <AlertDescription>
-            {(dataset.error as Error | null)?.message ?? `No dataset with id ${datasetId}.`}
-          </AlertDescription>
-        </Alert>
+        <ApiErrorState error={dataset.error} onRetry={() => dataset.refetch()} />
         <Button asChild variant="link" className="mt-4 px-0">
           <Link to="/">
             <ArrowLeft className="size-4" />
