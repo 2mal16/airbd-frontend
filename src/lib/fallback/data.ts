@@ -8,13 +8,18 @@
  * The app serves this only when the API is unreachable, and always behind a
  * visible warning, so nobody mistakes it for live data.
  *
- * Captured 2026-09-22T13:14:20.647Z from https://backend-19c991af.fastapicloud.dev
+ * Captured 2026-09-22T15:43:10.553Z from https://backend-19c991af.fastapicloud.dev
  * (BIDS Dataset Explorer API 0.1.0, BIDS 1.11.1).
  */
 
-import type { DatasetDetail, DatasetFacets, ValidationReport } from '@/lib/types'
+import type {
+  CatalogueStats,
+  DatasetDetail,
+  DatasetFacets,
+  ValidationReport,
+} from '@/lib/types'
 
-export const SNAPSHOT_TAKEN_AT = "2026-09-22T13:14:20.648Z"
+export const SNAPSHOT_TAKEN_AT = "2026-09-22T15:43:10.553Z"
 export const SNAPSHOT_SOURCE = "https://backend-19c991af.fastapicloud.dev"
 
 export const FALLBACK_DATASETS: DatasetDetail[] = [
@@ -28,8 +33,8 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     "source": "openneuro",
     "source_id": "ds004148",
     "owner_username": null,
-    "created_at": "2026-09-22T12:24:30.358229Z",
-    "updated_at": "2026-09-22T12:24:30.358229Z",
+    "created_at": "2026-09-22T15:39:43.242003Z",
+    "updated_at": "2026-09-22T15:39:43.242003Z",
     "latest_version": "v1.0.1",
     "bids_version": "1.8.0",
     "modalities": [
@@ -123,6 +128,128 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     "ethics_approvals": [],
     "references_and_links": [],
     "how_to_acknowledge": null,
+    "demographics": {
+      "participants": 60,
+      "with_sex": 60,
+      "with_age": 60,
+      "sex_counts": [
+        {
+          "sex": "male",
+          "count": 30
+        },
+        {
+          "sex": "female",
+          "count": 30
+        }
+      ],
+      "age_bins": [
+        {
+          "start": 15,
+          "end": 20,
+          "count": 9
+        },
+        {
+          "start": 20,
+          "end": 25,
+          "count": 43
+        },
+        {
+          "start": 25,
+          "end": 30,
+          "count": 8
+        }
+      ],
+      "age_min": 19,
+      "age_max": 26,
+      "age_mean": 22.1,
+      "age_median": 22
+    },
+    "session_details": [
+      {
+        "session_id": "01",
+        "datatypes": [
+          "eeg"
+        ],
+        "tasks": [
+          "restEC",
+          "restEO"
+        ],
+        "subject_count": 60,
+        "file_count": 482,
+        "size": 16106127360,
+        "recording_count": 120,
+        "total_recording_duration": 36000,
+        "sampling_frequency": 500,
+        "n_channels": 64,
+        "description": "Baseline visit: eyes-closed and eyes-open blocks.",
+        "metadata": {
+          "Manufacturer": "BioSemi",
+          "ManufacturersModelName": "ActiveTwo",
+          "PowerLineFrequency": 50,
+          "EEGReference": "CPz",
+          "EEGPlacementScheme": "BioSemi ABC layout",
+          "RecordingType": "continuous",
+          "SoftwareFilters": "n/a"
+        },
+        "size_formatted": "15.00 GB"
+      },
+      {
+        "session_id": "02",
+        "datatypes": [
+          "eeg"
+        ],
+        "tasks": [
+          "restEC",
+          "restEO"
+        ],
+        "subject_count": 60,
+        "file_count": 482,
+        "size": 16106127360,
+        "recording_count": 120,
+        "total_recording_duration": 36000,
+        "sampling_frequency": 500,
+        "n_channels": 64,
+        "description": "Follow-up at one week, identical protocol.",
+        "metadata": {
+          "Manufacturer": "BioSemi",
+          "ManufacturersModelName": "ActiveTwo",
+          "PowerLineFrequency": 50,
+          "EEGReference": "CPz",
+          "EEGPlacementScheme": "BioSemi ABC layout",
+          "RecordingType": "continuous",
+          "SoftwareFilters": "n/a"
+        },
+        "size_formatted": "15.00 GB"
+      },
+      {
+        "session_id": "03",
+        "datatypes": [
+          "eeg"
+        ],
+        "tasks": [
+          "restEC",
+          "restEO"
+        ],
+        "subject_count": 60,
+        "file_count": 482,
+        "size": 16106127360,
+        "recording_count": 120,
+        "total_recording_duration": 36000,
+        "sampling_frequency": 500,
+        "n_channels": 64,
+        "description": "Follow-up at one month, identical protocol.",
+        "metadata": {
+          "Manufacturer": "BioSemi",
+          "ManufacturersModelName": "ActiveTwo",
+          "PowerLineFrequency": 50,
+          "EEGReference": "CPz",
+          "EEGPlacementScheme": "BioSemi ABC layout",
+          "RecordingType": "continuous",
+          "SoftwareFilters": "n/a"
+        },
+        "size_formatted": "15.00 GB"
+      }
+    ],
     "subjects": [
       "01",
       "02",
@@ -191,7 +318,7 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
       "03"
     ],
     "secondary_modalities": [],
-    "validated_at": "2026-09-22T12:24:30.358229Z",
+    "validated_at": "2026-09-22T15:39:43.242003Z",
     "file_size_formatted": "45.00 GB",
     "is_valid": false
   },
@@ -205,8 +332,8 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     "source": "openneuro",
     "source_id": "ds003645",
     "owner_username": null,
-    "created_at": "2026-09-22T12:24:30.350849Z",
-    "updated_at": "2026-09-22T12:24:30.350849Z",
+    "created_at": "2026-09-22T15:39:43.224116Z",
+    "updated_at": "2026-09-22T15:39:43.224116Z",
     "latest_version": "v1.0.0",
     "bids_version": "1.6.0",
     "modalities": [
@@ -293,6 +420,38 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     "ethics_approvals": [],
     "references_and_links": [],
     "how_to_acknowledge": null,
+    "demographics": {
+      "participants": 18,
+      "with_sex": 18,
+      "with_age": 18,
+      "sex_counts": [
+        {
+          "sex": "male",
+          "count": 9
+        },
+        {
+          "sex": "female",
+          "count": 9
+        }
+      ],
+      "age_bins": [
+        {
+          "start": 25,
+          "end": 30,
+          "count": 14
+        },
+        {
+          "start": 30,
+          "end": 35,
+          "count": 4
+        }
+      ],
+      "age_min": 25,
+      "age_max": 33,
+      "age_mean": 28.3,
+      "age_median": 28
+    },
+    "session_details": [],
     "subjects": [
       "01",
       "02",
@@ -315,7 +474,7 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     ],
     "sessions": [],
     "secondary_modalities": [],
-    "validated_at": "2026-09-22T12:24:30.350849Z",
+    "validated_at": "2026-09-22T15:39:43.224116Z",
     "file_size_formatted": "7.00 GB",
     "is_valid": true
   },
@@ -329,8 +488,8 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     "source": "openneuro",
     "source_id": "ds002718",
     "owner_username": null,
-    "created_at": "2026-09-22T12:24:30.343842Z",
-    "updated_at": "2026-09-22T12:24:30.343842Z",
+    "created_at": "2026-09-22T15:39:43.214634Z",
+    "updated_at": "2026-09-22T15:39:43.214634Z",
     "latest_version": "v1.0.5",
     "bids_version": "1.10.0",
     "modalities": [
@@ -420,6 +579,48 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
       "https://doi.org/10.1038/sdata.2015.1"
     ],
     "how_to_acknowledge": null,
+    "demographics": {
+      "participants": 19,
+      "with_sex": 19,
+      "with_age": 19,
+      "sex_counts": [
+        {
+          "sex": "male",
+          "count": 9
+        },
+        {
+          "sex": "female",
+          "count": 10
+        }
+      ],
+      "age_bins": [
+        {
+          "start": 20,
+          "end": 25,
+          "count": 7
+        },
+        {
+          "start": 25,
+          "end": 30,
+          "count": 6
+        },
+        {
+          "start": 30,
+          "end": 35,
+          "count": 3
+        },
+        {
+          "start": 35,
+          "end": 40,
+          "count": 3
+        }
+      ],
+      "age_min": 23,
+      "age_max": 35,
+      "age_mean": 27.6,
+      "age_median": 26
+    },
+    "session_details": [],
     "subjects": [
       "01",
       "02",
@@ -443,7 +644,7 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     ],
     "sessions": [],
     "secondary_modalities": [],
-    "validated_at": "2026-09-22T12:24:30.343842Z",
+    "validated_at": "2026-09-22T15:39:43.214634Z",
     "file_size_formatted": "14.00 GB",
     "is_valid": true
   },
@@ -457,8 +658,8 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
     "source": "openneuro",
     "source_id": "ds000117",
     "owner_username": null,
-    "created_at": "2026-09-22T12:24:30.331191Z",
-    "updated_at": "2026-09-22T12:24:30.331191Z",
+    "created_at": "2026-09-22T15:39:43.190332Z",
+    "updated_at": "2026-09-22T15:39:43.190332Z",
     "latest_version": "v1.0.6",
     "bids_version": "1.9.0",
     "modalities": [
@@ -562,6 +763,103 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
       "https://doi.org/10.1038/sdata.2015.1"
     ],
     "how_to_acknowledge": "Please cite Wakeman & Henson (2015), Scientific Data 2:150001.",
+    "demographics": {
+      "participants": 16,
+      "with_sex": 16,
+      "with_age": 16,
+      "sex_counts": [
+        {
+          "sex": "male",
+          "count": 8
+        },
+        {
+          "sex": "female",
+          "count": 8
+        }
+      ],
+      "age_bins": [
+        {
+          "start": 20,
+          "end": 25,
+          "count": 4
+        },
+        {
+          "start": 25,
+          "end": 30,
+          "count": 6
+        },
+        {
+          "start": 30,
+          "end": 35,
+          "count": 4
+        },
+        {
+          "start": 35,
+          "end": 40,
+          "count": 2
+        }
+      ],
+      "age_min": 22,
+      "age_max": 38,
+      "age_mean": 28.6,
+      "age_median": 28
+    },
+    "session_details": [
+      {
+        "session_id": "meg",
+        "datatypes": [
+          "meg",
+          "eeg"
+        ],
+        "tasks": [
+          "facerecognition"
+        ],
+        "subject_count": 16,
+        "file_count": 1632,
+        "size": 74088775680,
+        "recording_count": 96,
+        "total_recording_duration": 43200,
+        "sampling_frequency": 1100,
+        "n_channels": 376,
+        "description": "Simultaneous MEG and EEG, six runs of the face-recognition task.",
+        "metadata": {
+          "Manufacturer": "Elekta",
+          "ManufacturersModelName": "TRIUX",
+          "PowerLineFrequency": 50,
+          "DewarPosition": "upright",
+          "SoftwareFilters": "n/a",
+          "EEGReference": "nose"
+        },
+        "size_formatted": "69.00 GB"
+      },
+      {
+        "session_id": "mri",
+        "datatypes": [
+          "anat",
+          "func",
+          "fmap"
+        ],
+        "tasks": [
+          "facerecognition"
+        ],
+        "subject_count": 16,
+        "file_count": 1175,
+        "size": 17533702656,
+        "recording_count": 144,
+        "total_recording_duration": 30240,
+        "sampling_frequency": null,
+        "n_channels": null,
+        "description": "Structural and functional MRI acquired in a separate visit.",
+        "metadata": {
+          "Manufacturer": "Siemens",
+          "ManufacturersModelName": "TrioTim",
+          "MagneticFieldStrength": 3,
+          "RepetitionTime": 2,
+          "EchoTime": 0.03
+        },
+        "size_formatted": "16.33 GB"
+      }
+    ],
     "subjects": [
       "01",
       "02",
@@ -588,7 +886,7 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
       "MRI_Structural",
       "MRI_Functional"
     ],
-    "validated_at": "2026-09-22T12:24:30.331191Z",
+    "validated_at": "2026-09-22T15:39:43.190332Z",
     "file_size_formatted": "85.33 GB",
     "is_valid": true
   }
@@ -597,7 +895,7 @@ export const FALLBACK_DATASETS: DatasetDetail[] = [
 export const FALLBACK_REPORTS: Record<string, ValidationReport> = {
   "ds004148": {
     "dataset_id": "ds004148",
-    "validated_at": "2026-09-22T12:24:30.358229+00:00",
+    "validated_at": "2026-09-22T15:39:43.242003+00:00",
     "summary": {
       "is_valid": false,
       "error_count": 2,
@@ -652,7 +950,7 @@ export const FALLBACK_REPORTS: Record<string, ValidationReport> = {
   },
   "ds003645": {
     "dataset_id": "ds003645",
-    "validated_at": "2026-09-22T12:24:30.350849+00:00",
+    "validated_at": "2026-09-22T15:39:43.224116+00:00",
     "summary": {
       "is_valid": true,
       "error_count": 0,
@@ -680,7 +978,7 @@ export const FALLBACK_REPORTS: Record<string, ValidationReport> = {
   },
   "ds002718": {
     "dataset_id": "ds002718",
-    "validated_at": "2026-09-22T12:24:30.343842+00:00",
+    "validated_at": "2026-09-22T15:39:43.214634+00:00",
     "summary": {
       "is_valid": true,
       "error_count": 0,
@@ -693,7 +991,7 @@ export const FALLBACK_REPORTS: Record<string, ValidationReport> = {
   },
   "ds000117": {
     "dataset_id": "ds000117",
-    "validated_at": "2026-09-22T12:24:30.331191+00:00",
+    "validated_at": "2026-09-22T15:39:43.190332+00:00",
     "summary": {
       "is_valid": true,
       "error_count": 0,
@@ -886,4 +1184,272 @@ export const FALLBACK_FACETS: DatasetFacets = {
     "distinct_total": 5,
     "truncated": false
   }
+}
+
+export const FALLBACK_STATS: CatalogueStats = {
+  "dataset_count": 4,
+  "participant_count": 113,
+  "session_count": 5,
+  "file_count": 4964,
+  "total_size": 162489438720,
+  "demographics": {
+    "participants": 113,
+    "with_sex": 113,
+    "with_age": 113,
+    "sex_counts": [
+      {
+        "sex": "male",
+        "count": 56
+      },
+      {
+        "sex": "female",
+        "count": 57
+      }
+    ],
+    "age_bins": [
+      {
+        "start": 15,
+        "end": 20,
+        "count": 9
+      },
+      {
+        "start": 20,
+        "end": 25,
+        "count": 54
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "count": 34
+      },
+      {
+        "start": 30,
+        "end": 35,
+        "count": 11
+      },
+      {
+        "start": 35,
+        "end": 40,
+        "count": 5
+      }
+    ],
+    "age_min": 19,
+    "age_max": 38,
+    "age_mean": 24.9,
+    "age_median": 24
+  },
+  "modality": [
+    {
+      "value": "eeg",
+      "count": 4
+    },
+    {
+      "value": "anat",
+      "count": 1
+    },
+    {
+      "value": "beh",
+      "count": 1
+    },
+    {
+      "value": "fmap",
+      "count": 1
+    },
+    {
+      "value": "func",
+      "count": 1
+    },
+    {
+      "value": "meg",
+      "count": 1
+    }
+  ],
+  "license": [
+    {
+      "value": "public",
+      "count": 2
+    },
+    {
+      "value": "attribution",
+      "count": 1
+    },
+    {
+      "value": "noncommercial",
+      "count": 1
+    }
+  ],
+  "bids_version": [
+    {
+      "value": "1.10.0",
+      "count": 1
+    },
+    {
+      "value": "1.6.0",
+      "count": 1
+    },
+    {
+      "value": "1.8.0",
+      "count": 1
+    },
+    {
+      "value": "1.9.0",
+      "count": 1
+    }
+  ],
+  "electrode_system": [
+    {
+      "value": "10-10",
+      "count": 1
+    },
+    {
+      "value": "10-20",
+      "count": 1
+    },
+    {
+      "value": "biosemi",
+      "count": 1
+    },
+    {
+      "value": "egi-geodesic",
+      "count": 1
+    }
+  ],
+  "validation": [
+    {
+      "value": "valid",
+      "count": 3
+    },
+    {
+      "value": "invalid",
+      "count": 1
+    }
+  ],
+  "top_error_codes": [
+    {
+      "value": "CHANNELS_TSV_MISSING",
+      "count": 1
+    },
+    {
+      "value": "PARTICIPANT_ID_MISMATCH",
+      "count": 1
+    }
+  ],
+  "top_warning_codes": [
+    {
+      "value": "JSON_KEY_RECOMMENDED",
+      "count": 2
+    },
+    {
+      "value": "EVENTS_TSV_MISSING",
+      "count": 1
+    },
+    {
+      "value": "README_FILE_SMALL",
+      "count": 1
+    },
+    {
+      "value": "TSV_COLUMN_ORDER_INCORRECT",
+      "count": 1
+    }
+  ],
+  "session_counts": [
+    {
+      "value": "0",
+      "count": 2
+    },
+    {
+      "value": "2",
+      "count": 1
+    },
+    {
+      "value": "3",
+      "count": 1
+    }
+  ],
+  "session_datatypes": [
+    {
+      "value": "eeg",
+      "count": 4
+    },
+    {
+      "value": "anat",
+      "count": 1
+    },
+    {
+      "value": "fmap",
+      "count": 1
+    },
+    {
+      "value": "func",
+      "count": 1
+    },
+    {
+      "value": "meg",
+      "count": 1
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "ds000117",
+      "name": "Multisubject, multimodal face processing",
+      "participants": 16,
+      "sessions_count": 2,
+      "file_size": 91622478336,
+      "total_files": 2807,
+      "modalities": [
+        "meg",
+        "eeg",
+        "anat",
+        "func",
+        "fmap"
+      ],
+      "is_valid": true
+    },
+    {
+      "dataset_id": "ds002718",
+      "name": "EEG: Face processing in familiar and unfamiliar faces",
+      "participants": 19,
+      "sessions_count": 0,
+      "file_size": 15032385536,
+      "total_files": 421,
+      "modalities": [
+        "eeg"
+      ],
+      "is_valid": true
+    },
+    {
+      "dataset_id": "ds003645",
+      "name": "Face processing MEEG with HED annotation",
+      "participants": 18,
+      "sessions_count": 0,
+      "file_size": 7516192768,
+      "total_files": 289,
+      "modalities": [
+        "eeg",
+        "beh"
+      ],
+      "is_valid": true
+    },
+    {
+      "dataset_id": "ds004148",
+      "name": "Resting-state EEG with eyes open and eyes closed",
+      "participants": 60,
+      "sessions_count": 3,
+      "file_size": 48318382080,
+      "total_files": 1447,
+      "modalities": [
+        "eeg"
+      ],
+      "is_valid": false
+    }
+  ],
+  "growth": [
+    {
+      "date": "2026-09-22",
+      "datasets": 4,
+      "cumulative_datasets": 4,
+      "cumulative_participants": 113
+    }
+  ],
+  "total_size_formatted": "151.33 GB"
 }

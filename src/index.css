@@ -183,3 +183,41 @@
 @utility focus-ring {
     @apply outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;
 }
+
+/* ---------------------------------------------------------------------------
+   Chart tokens.
+
+   The categorical slots were validated with the dataviz palette checker, in
+   both modes, on the all-pairs list (scatter and dot forms need it):
+
+     light #0b8f63 #3d6fd9 #c96a00 — CVD dE 8.1, normal dE 22.5, contrast >= 3:1
+     dark  #13a874 #5f93ee #cc7c1e — CVD dE 9.9, normal dE 21.1, contrast >= 3:1
+
+   Do not substitute values here by eye; re-run the validator against the
+   surface colour of the mode you are changing.
+
+   Single-series charts use --chart-1 for every mark: bar length already
+   encodes magnitude, so shading bars by value would burn the colour channel
+   on information the chart is showing twice.
+   --------------------------------------------------------------------------- */
+:root {
+    --chart-surface: #ffffff;
+    --chart-1: #0b8f63;
+    --chart-2: #3d6fd9;
+    --chart-3: #c96a00;
+    --chart-neutral: oklch(0.72 0.01 250);
+    --chart-grid: oklch(0.92 0.004 250);
+    --chart-good: #0b8f63;
+    --chart-critical: #c0392b;
+}
+
+.dark {
+    --chart-surface: oklch(0.2712 0.0299 252.15);
+    --chart-1: #13a874;
+    --chart-2: #5f93ee;
+    --chart-3: #cc7c1e;
+    --chart-neutral: oklch(0.55 0.015 250);
+    --chart-grid: oklch(1 0 0 / 12%);
+    --chart-good: #13a874;
+    --chart-critical: #e06c5c;
+}

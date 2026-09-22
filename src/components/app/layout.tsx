@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 
 const NAV = [
   { to: '/', label: 'Discover', end: true },
+  { to: '/stats', label: 'Statistics', end: false },
   { to: '/validate', label: 'Path check', end: false },
   { to: '/about', label: 'About', end: false },
 ]

@@ -17,11 +17,12 @@ import {
   fallbackList,
   fallbackReport,
 } from '@/lib/fallback/query'
-import { SNAPSHOT_TAKEN_AT } from '@/lib/fallback/data'
+import { FALLBACK_STATS, SNAPSHOT_TAKEN_AT } from '@/lib/fallback/data'
 import type { DiscoveryState } from '@/hooks/use-dataset-query'
-import { toApiQuery } from '@/hooks/use-dataset-query'
+import { toApiQuery, toStatsQuery } from '@/hooks/use-dataset-query'
 import { markOffline, markOnline } from '@/lib/offline-status'
 import type {
+  CatalogueStats,
   DatasetDetail,
   DatasetFacets,
   DatasetListEnvelope,
@@ -58,6 +59,16 @@ export function getFacets(state: DiscoveryState): Promise<DatasetFacets> {
   return withFallback(
     () => api.facets(),
     () => fallbackFacets(state),
+  )
+}
+
+export function getStats(state: DiscoveryState): Promise<CatalogueStats> {
+  return withFallback(
+    () => api.stats(toStatsQuery(state)),
+    // The snapshot holds one unfiltered aggregate; re-deriving every statistic
+    // client-side would duplicate the server's aggregation for a view that is
+    // already labelled as stale.
+    () => FALLBACK_STATS,
   )
 }
 

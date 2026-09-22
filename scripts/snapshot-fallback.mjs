@@ -23,6 +23,7 @@ async function getJson(path) {
 
 const list = await getJson(`/datasets?limit=${LIMIT}&sort=newest`)
 const facets = await getJson('/datasets/facets')
+const stats = await getJson('/datasets/stats')
 const info = await getJson('/')
 
 const datasets = []
@@ -53,7 +54,7 @@ const banner = `/**
  * (${info.name} ${info.version}, BIDS ${info.bids_version}).
  */
 
-import type { DatasetDetail, DatasetFacets, ValidationReport } from '@/lib/types'
+import type {\n  CatalogueStats,\n  DatasetDetail,\n  DatasetFacets,\n  ValidationReport,\n} from '@/lib/types'
 
 export const SNAPSHOT_TAKEN_AT = ${JSON.stringify(new Date().toISOString())}
 export const SNAPSHOT_SOURCE = ${JSON.stringify(API)}
@@ -63,6 +64,8 @@ export const FALLBACK_DATASETS: DatasetDetail[] = ${JSON.stringify(datasets, nul
 export const FALLBACK_REPORTS: Record<string, ValidationReport> = ${JSON.stringify(reports, null, 2)}
 
 export const FALLBACK_FACETS: DatasetFacets = ${JSON.stringify(facets, null, 2)}
+
+export const FALLBACK_STATS: CatalogueStats = ${JSON.stringify(stats, null, 2)}
 `
 
 writeFileSync(TARGET, banner)

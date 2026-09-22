@@ -132,6 +132,8 @@ export interface DatasetDescription {
 }
 
 export interface DatasetDetail extends DatasetSummary {
+  demographics: Demographics
+  session_details: SessionSummary[]
   readme: string | null
   dataset_description: DatasetDescription | null
   keywords: string[]
@@ -242,4 +244,88 @@ export interface ServiceInfo {
   bids_version: string
   bids_schema_version: string
   datasets: number
+}
+
+// --- demographics, sessions and statistics ----------------------------------
+
+export const SEXES = ['male', 'female', 'other', 'unknown'] as const
+export type Sex = (typeof SEXES)[number]
+
+export interface SexCount {
+  sex: Sex
+  count: number
+}
+
+export interface AgeBin {
+  start: number
+  end: number
+  count: number
+}
+
+export interface Demographics {
+  participants: number
+  /** How many participants actually declared a sex — a chart must state its coverage. */
+  with_sex: number
+  with_age: number
+  sex_counts: SexCount[]
+  age_bins: AgeBin[]
+  age_min: number | null
+  age_max: number | null
+  age_mean: number | null
+  age_median: number | null
+}
+
+export interface SessionSummary {
+  session_id: string
+  datatypes: Datatype[]
+  tasks: string[]
+  subject_count: number | null
+  file_count: number | null
+  size: number | null
+  recording_count: number | null
+  total_recording_duration: number | null
+  sampling_frequency: number | null
+  n_channels: number | null
+  description: string | null
+  metadata: Record<string, unknown>
+  size_formatted: string | null
+}
+
+export interface DatasetPoint {
+  dataset_id: string
+  name: string
+  participants: number
+  sessions_count: number
+  file_size: number
+  total_files: number
+  modalities: Datatype[]
+  is_valid: boolean | null
+}
+
+export interface GrowthPoint {
+  date: string
+  datasets: number
+  cumulative_datasets: number
+  cumulative_participants: number
+}
+
+export interface CatalogueStats {
+  dataset_count: number
+  participant_count: number
+  session_count: number
+  file_count: number
+  total_size: number
+  total_size_formatted: string
+  demographics: Demographics
+  modality: FacetValue[]
+  license: FacetValue[]
+  bids_version: FacetValue[]
+  electrode_system: FacetValue[]
+  validation: FacetValue[]
+  top_error_codes: FacetValue[]
+  top_warning_codes: FacetValue[]
+  session_counts: FacetValue[]
+  session_datatypes: FacetValue[]
+  datasets: DatasetPoint[]
+  growth: GrowthPoint[]
 }

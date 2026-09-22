@@ -21,12 +21,50 @@ nothing set it falls back to the deployed API.
 | --- | --- |
 | `/` | Discovery: faceted filtering, search, sorting, pagination |
 | `/datasets/:datasetId` | One dataset: metadata, validation report, README, participants |
+| `/stats` | Catalogue statistics: cohort demographics, coverage, standards and quality |
 | `/validate` | Checks dataset-relative paths against BIDS naming rules |
 | `/about` | How the catalogue is built, and which API it is talking to |
 
 Filter state lives in the URL query string rather than component state, so a
 filtered view is a link: shareable, bookmarkable, and intact after a reload.
 `src/hooks/use-dataset-query.ts` owns that translation in both directions.
+
+## Charts
+
+`src/components/charts/` holds the primitives — `BarList`, `Histogram`,
+`StackedBar`, `StatTile` — plus `primitives.ts`, which is the single home for
+the mark specs every chart obeys: bars capped at 24px, a 4px radius on the data
+end with a square baseline, a 2px surface gap between touching marks, hairline
+solid gridlines.
+
+The categorical slots were validated with a palette checker in both modes, on
+the all-pairs list:
+
+| Slot | Light | Dark |
+| --- | --- | --- |
+| 1 | `#0b8f63` | `#13a874` |
+| 2 | `#3d6fd9` | `#5f93ee` |
+| 3 | `#c96a00` | `#cc7c1e` |
+
+Worst all-pairs CVD ΔE 8.1 light / 9.9 dark, normal-vision 22.5 / 21.1,
+contrast ≥ 3:1 throughout. **Do not substitute these by eye** — re-run the
+validator against the surface colour of the mode you are changing. The dark
+steps are chosen for the dark surface, not flipped from the light ones.
+
+Rules the charts hold to:
+
+* **One hue per single-series chart.** Bar length already encodes magnitude;
+  shading bars by value would spend the colour channel restating it, and on
+  unordered categories would imply an order that is not there.
+* **Colour follows the entity.** Sex keeps its slot whatever the filters do, so
+  narrowing a view never repaints the survivors.
+* **`unknown` is grey, never a series hue** — it is the absence of data, not a
+  category. Every demographic chart states its coverage (`with_sex`,
+  `with_age`) rather than implying the whole cohort is described.
+* **Status colours are reserved** for valid/invalid, and never reused as a
+  fourth series.
+* **Tooltips enhance, they never gate.** Every card carries a table view, and
+  each mark is focusable, so nothing is reachable only by hovering.
 
 ## When the API is down
 

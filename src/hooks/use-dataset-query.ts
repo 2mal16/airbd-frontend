@@ -169,3 +169,14 @@ export function toApiQuery(state: DiscoveryState): Record<string, QueryValue> {
     channels: state.channels || undefined,
   }
 }
+
+/**
+ * The subset of filters `GET /datasets/stats` accepts.
+ *
+ * Narrower than the listing on purpose: paging and sort mean nothing to an
+ * aggregate, and sending them would only invite the two to drift apart.
+ */
+export function toStatsQuery(state: DiscoveryState): Record<string, QueryValue> {
+  const { limit: _limit, offset: _offset, sort: _sort, ...rest } = toApiQuery(state)
+  return rest
+}

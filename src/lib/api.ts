@@ -6,6 +6,7 @@
  */
 
 import type {
+  CatalogueStats,
   DatasetDetail,
   DatasetFacets,
   DatasetListEnvelope,
@@ -187,6 +188,8 @@ export const api = {
     get<DatasetSearchEnvelope>('/datasets/search', query),
 
   facets: (query: Record<string, QueryValue> = {}) => get<DatasetFacets>('/datasets/facets', query),
+
+  stats: (query: Record<string, QueryValue> = {}) => get<CatalogueStats>('/datasets/stats', query),
 
   dataset: async (datasetId: string) => {
     const { dataset } = await get<{ dataset: DatasetDetail }>(

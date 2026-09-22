@@ -5,6 +5,7 @@ import { Layout } from '@/components/app/layout'
 import { AboutPage } from '@/pages/about'
 import { DatasetDetailPage } from '@/pages/dataset-detail'
 import { DiscoverPage } from '@/pages/discover'
+import { StatsPage } from '@/pages/stats'
 import { ValidatePathsPage } from '@/pages/validate-paths'
 
 const queryClient = new QueryClient({
@@ -26,6 +27,7 @@ export default function App() {
           <Route element={<Layout />}>
             <Route index element={<DiscoverPage />} />
             <Route path="datasets/:datasetId" element={<DatasetDetailPage />} />
+            <Route path="stats" element={<StatsPage />} />
             <Route path="validate" element={<ValidatePathsPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="*" element={<DiscoverPage />} />

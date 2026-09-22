@@ -3,6 +3,8 @@ import { AlertCircle, AlertTriangle, ArrowLeft, CheckCircle2, ExternalLink } fro
 import { Link, useParams } from 'react-router'
 
 import { ApiErrorState } from '@/components/app/api-error-state'
+import { SessionList } from '@/components/app/session-list'
+import { AgeChart, SexChart } from '@/components/charts/demographics-panel'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -325,8 +327,16 @@ export function DatasetDetailPage() {
               </Badge>
             )}
           </TabsTrigger>
-          {data.readme && <TabsTrigger value="readme">README</TabsTrigger>}
           <TabsTrigger value="participants">Participants</TabsTrigger>
+          <TabsTrigger value="sessions">
+            Sessions
+            {data.session_details.length > 0 && (
+              <Badge variant="secondary" className="ml-1.5 h-5 px-1.5 text-[0.7rem]">
+                {data.session_details.length}
+              </Badge>
+            )}
+          </TabsTrigger>
+          {data.readme && <TabsTrigger value="readme">README</TabsTrigger>}
         </TabsList>
 
         <TabsContent value="overview" className="pt-6">
@@ -349,8 +359,16 @@ export function DatasetDetailPage() {
           </TabsContent>
         )}
 
+        <TabsContent value="sessions" className="pt-6">
+          <SessionList sessions={data.session_details} />
+        </TabsContent>
+
         <TabsContent value="participants" className="pt-6">
           <div className="space-y-6">
+            <div className="grid gap-4 lg:grid-cols-2">
+              <SexChart demographics={data.demographics} />
+              <AgeChart demographics={data.demographics} />
+            </div>
             <Field label={`Subjects (${formatCount(data.subjects.length)})`}>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {data.subjects.map((subject) => (
